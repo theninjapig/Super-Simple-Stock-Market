@@ -3,7 +3,7 @@ from datetime import timedelta,datetime
 from time import time, sleep
 from numpy import array
 
-from SSBB import Stock, Transaction,Market
+from SSSM import Stock, Transaction,Market
 
 
 import unittest
@@ -44,7 +44,7 @@ class TestStock(unittest.TestCase):
         """ Testing thee computation of the Volume Weighted Stock Price"""
         TEA = Stock("TEA",10,100)
         TEA.updatePrice(10)
-        self.assertEqual( TEA.findVWSP(), None)
+        self.assertEqual( TEA.findVWSP(), 0)
 
         TEA.recTrans(NoSh=10,BorS="buy",Price=20,TS=time())
         TEA.recTrans(NoSh=10,BorS="buy",Price=30,TS=time())

@@ -76,7 +76,7 @@ class Stock:
             except ZeroDivisionError:
                 print "Oops! the vwsp cannot be computed. Try again..."
         else:
-            print "No transactions made in the past 15 minutes"
+            return 0
             
     def updatePrice(self,Price):
         self.Price=Price
