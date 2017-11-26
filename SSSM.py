@@ -28,26 +28,23 @@ class Stock:
         """ method to compute the dividend yield """
         if Price==None and (self.Price is not None):
             Price=self.Price
-        if self.Stype=="common":
-            try:
+        if Price != 0:
+            if self.Stype=="common":
                 return self.LDividend/Price
-            except ZeroDivisionError:
-                print "Oops!  That was no valid price value.  Try again..."
-        else:
-            try:
+            else:
                 return (self.LDividend*self.PValue)/Price
-            except ZeroDivisionError:
-                print "Oops!  That was no valid price value.  Try again..."
+        else:
+            raise BaseException( "Oops!  That was no valid price value.")
             
     
     def findPERatio(self,Price=None):
         """method to compute the PE ratio"""
         if Price==None and (self.Price is not None):
             Price=self.Price
-        try:
-                return Price/self.LDividend
-        except ZeroDivisionError:
-                print "Oops!  That was no valid dividend value.  Try again..."
+        if self.LDividend != 0:
+            return Price/self.LDividend
+        else:
+            raise BaseException("Oops!  That was no valid dividend value.")
                 
     def recTrans(self,NoSh,BorS,Price,TS):
         """method to record transactions"""
@@ -67,14 +64,12 @@ class Stock:
             if datetime.fromtimestamp(el.TS) > (datetime.now()-timedelta(minutes = 15)):
                 ban=True
                 num+=el.Price * el.NoSh
-                den+= el.NoSh
-                
-        
+                den+= el.NoSh     
         if ban:
-            try:
+            if den!=0:
                 return num/den
-            except ZeroDivisionError:
-                print "Oops! the vwsp cannot be computed. Try again..."
+            else:
+                raise BaseException("Oops! the vwsp cannot be computed.")
         else:
             return 0
             
