@@ -14,7 +14,7 @@ class TestStock(unittest.TestCase):
         pass
 
     def test_Stock_price(self):
-        """Testing the computation of the Stock Price"""
+        """Testing the method to update the Stock Price"""
         TEA = Stock("TEA",10,100)
         TEA.updatePrice(10)
         self.assertEqual( TEA.get_Price(), 10)
