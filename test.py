@@ -2,11 +2,9 @@ from __future__ import division
 from datetime import timedelta,datetime
 from time import time, sleep
 from numpy import array
-
 from SSSM import Stock, Transaction,Market
-
-
 import unittest
+
 
 class TestStock(unittest.TestCase):
  
@@ -39,7 +37,6 @@ class TestStock(unittest.TestCase):
         POP.recTrans(NoSh=20,BorS="sel",Price=52,TS=time())
         self.assertEqual( POP.get_numTrans(), 3) 
         
-
     def test_VWSP(self):
         """ Testing thee computation of the Volume Weighted Stock Price"""
         TEA = Stock("TEA",10,100)
@@ -69,10 +66,7 @@ class TestStock(unittest.TestCase):
         M.addStock(GIN)
         M.addStock(JOE)
 
-       
         self.assertEqual( M.get_numStocks(), 5)
-
-        
 
         # Test updating prices in the Market
         
@@ -82,7 +76,6 @@ class TestStock(unittest.TestCase):
 
         for key in M.get_Stocks():
             self.assertEqual( M.get_Stocks()[key].get_Price(), current_prices[key])
-
 
         #Checking the All Share Index of the Global Beverage Corporation Exchange Market
         self.assertEqual( M.findAShin(), 20.155561176383692)

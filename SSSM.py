@@ -9,6 +9,7 @@ class Stock:
     """
     Stock class including methods to compute dividend yield, PE ratio and weighted stock price ratio
     """
+    
     def __init__(self,Symbol,LDividend,PValue,Stype="common",FDividend=None, Price=None):
         self.Symbol=Symbol             # Symbol of Stock
         self.Stype = Stype             # Type of Stock (Common/Preferred)
@@ -35,7 +36,6 @@ class Stock:
                 return (self.LDividend*self.PValue)/Price
         else:
             raise BaseException( "Oops!  That was no valid price value.")
-            
     
     def findPERatio(self,Price=None):
         """method to compute the PE ratio"""
@@ -81,6 +81,7 @@ class Transaction:
     """
     Transaction class 
     """
+    
     def __init__(self,NoSh,BorS,Price,TS):
         self.NoSh=NoSh     # Number of shares
         self.BorS=BorS     # Buy or Sell indicator
@@ -94,6 +95,7 @@ class Market:
     The method to update prices relies of a dictionary buffer and could be modified/adapted to facilitate
     integration to other modules
     """
+    
     def __init__(self,DoS={}):
         self.DoS = DoS    # dictionary of stocks indexed by symbol
 
@@ -108,12 +110,12 @@ class Market:
     def get_Stocks(self):
         """ method to get the stocks"""
         return self.DoS
-
         
     def updatePrices(self,dd):
         """ method to update prices"""
         for key in dd:
             self.DoS[key].updatePrice(dd[key])
+            
     def findAShin(self):
         """ method to computer All Share Index"""
         #return reduce(lambda x, y: x*y, [self.DoS[key].get_price() for key in self.DoS] )
@@ -156,24 +158,4 @@ if __name__ == '__main__':
     #Computing the All Share Index of the Global Beverage Corporation Exchange Market
     print "\n The current All Share Index of the Global Beverage Corporation Exchange Market is:"
     print M.findAShin()
-    
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    
-
     
